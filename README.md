@@ -4,7 +4,7 @@ Vous aurez besoin de ``Wireshark`` et du logiciel ``aircrack-ng`` pour ce labora
 
 Si vous utilisez une distribution Kali, tout est déjà pré-installé. Pour la version Windows du logiciel ``aircrack-ng``ou pour son installation sur d'autres distributions, référez-vous au
 [site web aircrack-ng](https://aircrack-ng.org) et/ou au gestionnaire de paquets de votre distribution.
- 
+
 # Identification d'un dispositif
 
 ## Introduction
@@ -41,33 +41,39 @@ Nous savons que la cible s’est hébergée à l’hôtel « Black Rain » et qu
 * Répondre aux questions suivantes :
 
 > **_Question :_** Quel filtre avez-vous utilisé
-> 
+>
 > **_Réponse :_** wlan.fc.type_subtype==4
-> ![](images\q1.png)
+>
+> ![](images/q1.png)
 
 ---
 > **_Question :_** Quel est l’adresse MAC de la cible ?
-> 
+>
 > **_Réponse :_** Nous savons que la cible s'est rendu dans l'hôtel Black Rain et un Starbucks. Nous allons alors chercher dans les SSID ceux qui s'en rapprochent le plus.
-> 
+>
 > Black Rain:
-> ![](images\q2_1.png)
-> 
+>
+> ![](images/q2_1.png)
+>
 > Starbucks:
-> ![](images\q2_2.png)
-> 
+>
+> ![](images/q2_2.png)
+>
 > L'adresse MAC de la cible semble donc être FC:F1:36:22:49:74.
 
 ---
 > **_Question :_** Quel est le nom du constructeur de l’interface sans fils de la cible ?
-> 
+>
 > **_Réponse :_** Selon la capture Wireshark disponible, la cible utilise un laptop ou smartphone avec une interface provenant de la société Samsung.
-> ![](images\q3.png)
+>
+> ![](images/q3.png)
 
 ---
 > **_Question :_** Quel autres endroits la cible a-t-elle probablement visités ?
-> 
-> **_Réponse :_** ![](images\q4.png)
+>
+> **_Réponse :_**
+>
+> ![](images/q4.png)
 > La cible semblerait avoir visité l'aéroport de Genève, une Migros et une boutique de Fleur de Pains.
 
 ---
@@ -119,12 +125,12 @@ Maintenant que vous avez la clé WEP, configurez la dans Wireshark afin de déch
 ---
 > **_Montrer une capture d'écran de l'obtention de la clé WEP_**
 > 
-> **_Capture ici_** ![](images\q6.png)
+> **_Capture ici_** ![](images/q6.png)
 
 ---
 > **_Question :_** Arrivez-vous à récupérer les informations d’identification (credentials) de l’authentification basique http contenue dans la capture ?
 > 
-> **_Réponse :_** ![](images\q7.png)
+> **_Réponse :_** ![](images/q7.png)
 > Les informations d'identification sont admin:admin .
 
 ---
@@ -154,13 +160,13 @@ Nous utiliserons Wireshark pour trouver l’authentification WPA contenue dans l
 > 
 > **_Capture ici_**  
 > 1er message (60cb806f531978f2b6b18d1cad6855e592333764791225fa89ac74e60d12d971): 
-> ![](images\q8_1.png)
+> ![](images/q8_1.png)
 > 2eme message (72f64cc60d16d2c6f6e61c3ea6a3961f2a9651324918d26f709c48a0e00c51d3): 
-> ![](images\q8_2.png)
+> ![](images/q8_2.png)
 > 3eme message (60cb806f531978f2b6b18d1cad6855e592333764791225fa89ac74e60d12d971):  
-> ![](images\q8_3.png)
+> ![](images/q8_3.png)
 > 4eme message (72f64cc60d16d2c6f6e61c3ea6a3961f2a9651324918d26f709c48a0e00c51d3):  
-> ![](images\q8_4.png)
+> ![](images/q8_4.png)
 
 ---
 
@@ -171,7 +177,7 @@ Nous allons nous servir de l’outil aircrack-ng et d’un dictionnaire pour ret
 
 * Copier [le dictionnaire](files/french_dico.txt) sur votre machine locale 
 * Utilisez aircrack-ng en ligne de commandes pour cracker la passphrase du réseau WPA avec le même [fichier de capture chiffrée avec WPA](files/coursWLAN-WPA.cap) que vous avez déjà copié.
- 
+
 ```
 aircrack-ng <nom-du-fichier-capture> -w <nom-du-dictionnaire>
 ```
@@ -187,22 +193,21 @@ aircrack-ng <nom-du-fichier-capture> -w <nom-du-dictionnaire>
 ---
 > **_Montrer une capture d'écran de l'obtention de la passphrase WPA_**
 > 
-> **_Capture ici_** ![](images\q10.png)
+> **_Capture ici_** ![](images/q10.png)
 
 ---
 > **_Question :_** Lors de la capture, la cible a fait un « ping » sur un serveur. Arrivez-vous à dire de quel serveur il s’agit ?
 
-> 
 > **_Réponse :_** 
-> ![](images\q11.png)
+> ![](images/q11.png)
 > 
 > Adresse IP du serveur :  
 > 31.13.64.35
->
-> Nom de Domaine :  
+> 
+>Nom de Domaine :  
 > edge-star-mini-shv-01-amt2.facebook.com
 > 
-> ![](images\q11_2.png)
+> ![](images/q11_2.png)
 
 
 
@@ -213,9 +218,10 @@ Nous avons enlevé une seule trame (choisie stratégiquement) du fichier de capt
 * Répondre aux questions suivantes :
 
 > **_Question :_** Est-ce que vous arrivez à refaire l'exercice ? Pourquoi ou pourquoi pas ?
-> 
+>
 > **_Réponse :_** Non car aircrack-ng n'arrive pas à obtenir le packet utile pour le décodage de la clé WPA.  
-> ![](images\q12.png)
+>
+> ![](images/q12.png)
 
 ---
 > **_Question :_** Sur la base de votre réponse précédente, arrivez-vous à déduire quelle trame a été effacée ?
